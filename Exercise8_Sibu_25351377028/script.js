@@ -1,3 +1,6 @@
+
+//Quiz options, this is where we can add and remove options for our quiz platform, currently with 5 demo questions
+
 const questions = [
     {
         question: "Who invented JavaScript?",
@@ -26,7 +29,7 @@ const questions = [
     }
 ];
 
-// Shuffle questions
+// This is the script that is responsible for Shuffle questions after restart operation
 const quizQuestions = questions.sort(() => Math.random() - 0.5);
 
 let index = 0;
@@ -34,7 +37,7 @@ let score = 0;
 let timeLeft = 30;
 let timerInterval = null;
 
-// DOM elements
+// function for DOM elements and manipulation
 const questionElement = document.getElementById("question");
 const optionsContainer = document.getElementById("options");
 const nextBtn = document.getElementById("nextBtn");
@@ -43,12 +46,13 @@ const progressBar = document.getElementById("progressBar");
 const timerElement = document.getElementById("timer");
 const result = document.getElementById("result");
 
-// Load a question
+// loading question 
 function loadQuestion() {
     clearInterval(timerInterval);
     startTimer();
 
     const q = quizQuestions[index];
+	// progress bar and question count
 
     progressText.textContent = `Question ${index + 1} of ${quizQuestions.length}`;
     progressBar.style.width = `${((index) / quizQuestions.length) * 100}%`;
@@ -68,7 +72,8 @@ function loadQuestion() {
     });
 }
 
-// Timer logic
+
+// Timer logic script for countdown of question expiry
 function startTimer() {
     timeLeft = 30;
     timerElement.textContent = timeLeft;
@@ -97,7 +102,7 @@ function autoFail() {
 
     nextBtn.style.display = "block";
 }
-
+//checking selected option validity
 function selectOption(selected, correctAnswer) {
     clearInterval(timerInterval);
 
@@ -141,3 +146,4 @@ function showResult() {
 
 // Load first question
 loadQuestion();
+	
